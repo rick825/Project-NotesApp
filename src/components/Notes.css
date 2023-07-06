@@ -41,11 +41,12 @@
 
 .note h2{
     font-size: 1.5rem;
+    /* margin-top: -0.2rem; */
 }
 
 .note h3{
     font-size: 1rem;
-    margin-top: -1rem;
+    /* margin-top: -1rem; */
 }
 
 

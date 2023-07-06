@@ -22,14 +22,26 @@ const Main = () => {
     ]
     const [mynote, setNote] = useState(notes);
     const [isActive,setisActive] = useState([]);
+    const [isTrans,setisTrans] = useState(true);
   
     const handleClick = (id) =>{
        setisActive(id);
         console.log("running"+id);
     }
 
-    const changeHandler = (id) =>{
-        console.log("Handling Save"+id);
+    const handleAdd = () =>{
+      setisTrans(curr => !curr);
+    }
+
+    const pullcontent = (id,plnote) =>{
+      console.log("pull Content for->"+id+"..."+plnote);
+      setNote(mynote.map(obj =>{
+        if( obj['id'] === parseInt(id)){
+          return {...obj,content:plnote}
+        }else{
+          return obj;
+        }
+      }));
     }
 
   return (
@@ -37,21 +49,28 @@ const Main = () => {
 
      <div className="leftnote note-cont">
         
-      <div className="addnotebtn btn">
+      <div className="addnotebtn btn" onClick={() =>handleAdd()}>
         <img src={add} alt="Add" />
         <button>Add Note</button>
       </div>
-      <div className="notes">
+
+      <div className={`inputValue ${isTrans ? 'ip-active': 'ip-inactive' }`}>
+      <input type="text" placeholder={"Enter your notes title here"}  />
+      <button className='btn'>Submit</button>
+      </div>
+
+     
+      <div className={`notes ${isTrans ? 'trans-note': ''}`} >
       { 
         mynote.map((obj)=>{
             return( <div  key={obj.id}  onClick={() => handleClick(obj.id)} className={`notes ${isActive === obj.id ? 'active':'inactive'}`}>
             <Notes notetitle = {obj.title} notedate={obj.date} />
             </div>    
             )
-        })
-           
+        })     
       } 
-      </div>   
+      </div>  
+
      </div>
 
     <div className="rightnote note-cont">
@@ -59,24 +78,21 @@ const Main = () => {
       {
         mynote.map((obj)=>{
             return (
-                <div className={`conts ${isActive === obj.id ? 'cont-active':'cont-inactive'}`} key={obj.id}>
-                <div className="ccont" >
-                <div className="ctitle">
-                <div className='titlediv'>
-                 <h3>{obj.title}</h3>
-                </div> 
-                 <div className="editdiv">
-                 <img src={edit} alt="" className='edit-img'/>
+         <div className={`conts ${isActive === obj.id ? 'cont-active':'cont-inactive'}`} key={obj.id}>
+                 <div className="ccont" >
+                   <div className="ctitle">
+                    <div className='titlediv'>
+                      <h3>{obj.title}</h3>
+                    </div> 
+                    <div className="editdiv">
+                       <img src={edit} alt="" className='edit-img'/>
+                    </div>
                  </div>
-                 </div>
-                 <div className="cbtn">
-                 <button onClick={() => changeHandler(obj.id)}>Save</button>
-                 </div>
-                </div>
+              </div>
                 <div className="con">
-                <Content notecontent = {obj.content} noteid={obj.id}/>
+                <Content notecontent = {obj.content} noteid={obj.id} onCh={(pullednote) => pullcontent(obj.id,pullednote)}/>
                 </div>
-                </div>
+             </div>
             )
         })
       }

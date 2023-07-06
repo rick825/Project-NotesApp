@@ -4,7 +4,6 @@
 /* main section */
 .main{
     width: 100%;
-    
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -18,7 +17,7 @@
 
 .leftnote{
    width: 20%;
-   background-color: #222;
+   background-color: #14141f;
 
 }
 
@@ -29,31 +28,23 @@
 /* end main section */
 
 /* left section */
-.notes{
- margin-top: 2rem;
-}
-
-.leftnote{
-    z-index: 100;
-}
-.notelist{
-    /* margin-top: 4rem; */
-}
 
 .addnotebtn{
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-top: 5rem;
-    padding: 1rem;
+    padding: 1.5rem;
     transition: 0.5s ease;
     cursor: pointer;
     justify-content: center;
-    padding-right: 10rem;
+    padding-right: 2rem;
+    z-index: 10000;
+    margin-bottom: 5rem;
 }
 
 .addnotebtn:hover{
-    background-color: #333333;
+    background-color: #1f1f2e;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
@@ -71,8 +62,78 @@
   cursor: pointer;
 }
 
+.inputValue{
+    position: absolute;
+    padding: 2rem;
+    left: 15%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.6s ease;
+    margin-top: 2rem;
+    transform: translateY(-30%);
+    z-index: 1;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.ip-active{
+    opacity: 0;
+    transform: translateY(-15rem);
+    z-index: -1;
+   }
+
+.inputValue input{
+    padding: 1.2rem;
+    margin-top: 0.8rem;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+
+.inputValue .btn{
+    background-color:   #004d4d;
+    color: white;
+    padding: 0.6rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      width: 10rem; 
+      margin-top: 1.5rem; 
+      transition: 0.2s ease;  
+   }
+
+ .inputValue .btn:hover{
+    transform: scale(120%);
+   }
+
+.notes{
+ margin-top: 1.5rem;
+ padding: 1rem;
+ align-items: center;
+ transform: translateY(40%);
+ transition: 0.8s ease;
+
+}
+
+.trans-note{
+   
+    transform: translateY(-25%);
+}
+
+.leftnote{
+    z-index: 100;
+}
+.notelist{
+    /* margin-top: 4rem; */
+}
+
+
 .active{
-    background-color:  #262626;
+    background-color:  	 #1f1f2e;
     opacity: 1;
     z-index: 1000;
    
@@ -157,6 +218,8 @@
     transform: translateX(-100rem);
 }
 
+
+
 .cbtn button{
  background: transparent;
  border: none;
@@ -169,7 +232,7 @@
 
 
 .cbtn button:hover{
-    background-color: #222;
+    background-color: #4d4d4d;
     color: white;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
