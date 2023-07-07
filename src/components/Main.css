@@ -72,8 +72,9 @@
     align-items: center;
     transition: 0.6s ease;
     margin-top: 2rem;
-    transform: translateY(-30%);
+    transform: translateY(-55%);
     z-index: 1;
+    visibility: visible;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
@@ -81,6 +82,7 @@
     opacity: 0;
     transform: translateY(-15rem);
     z-index: -1;
+    visibility: hidden;
    }
 
 .inputValue input{
@@ -110,18 +112,51 @@
     transform: scale(120%);
    }
 
+.notesdiv{
+    width: 100%;
+    height: 63rem;
+    position: relative;
+    display: flex;
+    margin-top: 1rem;
+    overflow-y: scroll;
+    transition: 0.8s ease;
+    justify-content: center;
+}
+
+.notesdiv::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+}
+
+.notesdiv::-webkit-scrollbar
+{
+	width: 10px;
+    transition: 1s ease;
+}
+
+.notesdiv:hover::-webkit-scrollbar {
+   /* width: 10px; */
+}
+
+.notesdiv::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #52527a;
+}
+
+
 .notes{
  margin-top: 1.5rem;
  padding: 1rem;
  align-items: center;
- transform: translateY(40%);
- transition: 0.8s ease;
-
+ transform: translateY(-6.5%);
 }
 
 .trans-note{
-   
-    transform: translateY(-25%);
+    height: 55rem;
+    transform: translateY(16%);
 }
 
 .leftnote{

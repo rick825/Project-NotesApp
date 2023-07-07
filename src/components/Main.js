@@ -23,6 +23,23 @@ const Main = () => {
     const [mynote, setNote] = useState(notes);
     const [isActive,setisActive] = useState([]);
     const [isTrans,setisTrans] = useState(true);
+    const [title,setTitle] = useState("");
+
+    const handleSubmit = (e) =>{
+      e.preventDefault();
+      console.log("--->"+title);
+      if(title.trim().length !== 0){
+      const new_data = {
+        id:Math.random(),
+        title: title,
+        content : "Content here..."
+      }
+      setNote([...mynote,new_data]);
+    }else{
+      alert('Please enter note');
+    }
+       
+    }
   
     const handleClick = (id) =>{
        setisActive(id);
@@ -55,12 +72,15 @@ const Main = () => {
       </div>
 
       <div className={`inputValue ${isTrans ? 'ip-active': 'ip-inactive' }`}>
-      <input type="text" placeholder={"Enter your notes title here"}  />
-      <button className='btn'>Submit</button>
+      <form >
+      <input type="text" placeholder={"Enter your notes title here"}  value={title}
+      onChange={(e) => setTitle(e.target.value)} />
+      <button className='btn' onClick={handleSubmit}>Submit</button>
+      </form>
       </div>
 
-     
-      <div className={`notes ${isTrans ? 'trans-note': ''}`} >
+     <div className={`notesdiv ${isTrans ? '': 'trans-note'}`}>
+      <div className={`notes`} >
       { 
         mynote.map((obj)=>{
             return( <div  key={obj.id}  onClick={() => handleClick(obj.id)} className={`notes ${isActive === obj.id ? 'active':'inactive'}`}>
@@ -69,7 +89,8 @@ const Main = () => {
             )
         })     
       } 
-      </div>  
+      </div> 
+      </div> 
 
      </div>
 
