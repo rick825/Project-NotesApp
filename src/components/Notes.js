@@ -4,10 +4,14 @@ import note from './images/note.png';
 import del from './images/delete.png';
 
 
-const Notes = ({notetitle,notedate}) => {
+const Notes = ({onDelete,noteid,notetitle,notedate}) => {
    
     console.log("This is Notes->"+notetitle);
-
+   
+    const handleDelete = (id) =>{
+    console.log("handle ---> "+id);
+    onDelete(id);
+    }
 
   return (
       <div className="note">
@@ -22,7 +26,7 @@ const Notes = ({notetitle,notedate}) => {
     </div>
     <div className="div2">
     <div className="delimg">
-        <img src={del} alt="delete" />
+        <img src={del} alt="delete" onClick={() => handleDelete(noteid)}/>
     </div>
     </div>
       </div>

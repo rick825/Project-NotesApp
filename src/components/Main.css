@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    
 }
 
 .note-cont{
@@ -22,7 +23,41 @@
 }
 
 .rightnote{
+    position: relative;
     width: 80%;
+}
+
+
+
+.backblack{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 10;                    ;
+    background-color: black;
+    transition: 0.5s ease;
+   
+}
+
+
+
+.close{
+    position: relative;
+    z-index: 10000;   
+}
+
+.close img{
+    width: 30px;
+    position: absolute;
+    top: 2rem;
+    right: 3%;
+    cursor: pointer;
+}
+
+.nav{
+    display: none;
 }
 
 /* end main section */
@@ -96,7 +131,7 @@
 
 
 .inputValue .btn{
-    background-color:   #004d4d;
+    background-color:   #33334d;
     color: white;
     padding: 0.6rem;
     border-radius: 10px;
@@ -176,8 +211,7 @@
 
 .inactive{
     background-color: transparent;
-    opacity: 0.5;
-    
+    opacity: 0.5;    
 }
 
 .notes{
@@ -187,10 +221,11 @@
 .notes:hover{
     opacity: 1;
 }
-
+/* right section */
 /* contents */
 .contents{
  position: relative;
+ z-index: 1;
 }
 
 .conts{
@@ -270,4 +305,108 @@
     background-color: #4d4d4d;
     color: white;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+
+.titleedit{
+    position: relative;
+    opacity: 0;
+     visibility: hidden;
+     transition: 0.5s ease;
+     z-index: 1000;
+}
+
+
+.titleactive{
+    opacity: 1;
+    visibility: visible;
+}
+/* end right section */
+
+@media screen and (max-width: 992px) {
+  
+    .leftnote{
+        position: absolute;
+        width: 90%;
+        transform: translateX(-100rem);
+        transition: 0.6s ease;
+    }
+
+    .rightnote{
+        width: 100%;
+        overflow: none;
+    }
+
+    .backblack{
+        width: 100%;
+    }
+
+    .ctitle{
+        width: 90%;
+    }
+    
+
+    .nav{
+        position: relative;
+        display: block;
+       
+    }
+
+    /* hamburger section */
+
+    .nav img{
+        position: fixed;
+        left:2rem;
+        top:0.8rem;
+        width: 40px;
+        margin-left: -1rem;
+        z-index: 10000;
+    }
+
+    .navshow{
+        transform: translateX(-2rem);
+    }
+
+
+      /* nav-icon-1 */
+      .nav-icon-2{
+        width: 35px;
+        height: 30px;
+        margin: 10px 10px;
+        position: relative;
+        cursor: pointer;
+        /* display: inline-block; */
+        z-index: 1000000000000000;
+      }
+      .nav-icon-2 span{
+        background-color:black;
+        position: absolute;
+        border-radius: 2px;
+        transition: .3s cubic-bezier(.8, .5, .2, 1.4);
+        transition: 0.4s ease;
+      }
+      .nav-icon-2 span:nth-child(1){
+        width: 100%;
+        height:  4px;
+        display: block;
+        top: 0px;
+        left: 0px;
+      }
+      .nav-icon-2 span:nth-child(2){
+        width: 100%;
+        height:  4px;
+        display: block;
+        top: 13px;
+        left: 0px;
+      }
+      .nav-icon-2 span:nth-child(3){
+        width: 100%;
+        height:  4px;
+        display: block;
+        bottom: 0px;
+        left: 0px;
+      }
+    /* end hamburger section */
+   
+
 }

@@ -7,3 +7,9 @@
 
 ->Added scrolling notes nav
 ->Added Add Notes function
+
+#Updates 08/07/2023 09:35 PM
+
+-> Added "Edit Title Section"
+-> Responsive for Mobile
+-> Added "Delete logic"

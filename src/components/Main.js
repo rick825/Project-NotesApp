@@ -4,6 +4,8 @@ import Notes from './Notes';
 import add from './images/add.png';
 import edit from './images/edit.png';
 import Content from './Content';
+import TitleEdit from './TitleEdit';
+import cross from './images/cross.png';
 
 const Main = () => {
 
@@ -24,6 +26,9 @@ const Main = () => {
     const [isActive,setisActive] = useState([]);
     const [isTrans,setisTrans] = useState(true);
     const [title,setTitle] = useState("");
+    const [show,setShow] = useState([]);
+    const [backBlack,setbackblack] = useState([]);
+    const [isNav,setisNav] = useState('');
 
     const handleSubmit = (e) =>{
       e.preventDefault();
@@ -37,8 +42,21 @@ const Main = () => {
       setNote([...mynote,new_data]);
     }else{
       alert('Please enter note');
+    } 
     }
-       
+
+    const editTitle = (id,tinput)=>{
+      setNote(mynote.map(obj =>{
+          if(obj['id'] === id){
+            return {...obj,title:tinput}
+          }else{
+            return obj;
+          }
+      }))
+     }
+    
+    const navActive = () =>{
+   setisNav(curr => !curr);
     }
   
     const handleClick = (id) =>{
@@ -61,10 +79,43 @@ const Main = () => {
       }));
     }
 
+    const handleDelete = (id) =>{
+      console.log("handle ---> "+id);
+      setNote(mynote.filter((currElm)=>{
+        return currElm.id !== id;
+    }))
+    }
+
+    const handleEdit = (id) =>{
+      if(show.includes(id)){
+        setShow(show.filter(i=>i !== id));
+        console.log("ID->"+id);
+      }else{
+        setShow([...show,id])
+      }
+
+      if(backBlack.includes(id)){
+        setbackblack(backBlack.filter(i=>i !== id))
+      }else{
+        setbackblack([...backBlack,id]);
+      }
+
+   
+   }
+
+   const handleClose = (id) =>{
+    if(backBlack.includes(id)){
+    setbackblack(backBlack.filter(i =>i !== id ));
+    setShow(show.filter(i=>i !== id));
+    }
+   }
+
+   
+
   return (
     <div className='main'>
 
-     <div className="leftnote note-cont">
+     <div className={`leftnote note-cont ${isNav ? 'navshow':''}`}>
         
       <div className="addnotebtn btn" onClick={() =>handleAdd()}>
         <img src={add} alt="Add" />
@@ -84,35 +135,60 @@ const Main = () => {
       { 
         mynote.map((obj)=>{
             return( <div  key={obj.id}  onClick={() => handleClick(obj.id)} className={`notes ${isActive === obj.id ? 'active':'inactive'}`}>
-            <Notes notetitle = {obj.title} notedate={obj.date} />
+            <Notes notetitle = {obj.title} notedate={obj.date} noteid={obj.id} onDelete={(id)=>handleDelete(id)}/>
             </div>    
             )
         })     
       } 
       </div> 
+
       </div> 
 
      </div>
 
-    <div className="rightnote note-cont">
+ <div className="rightnote note-cont">
+
+    <div className="nav" onClick={navActive}>
+    <div className="icon nav-icon-2" >
+      <span style={{backgroundColor : isNav ? 'white':'black'}}></span>
+      <span style={{backgroundColor : isNav ? 'white':'black'}}></span>
+      <span style={{backgroundColor : isNav ? 'white':'black'}}></span>
+      <span style={{backgroundColor : isNav ? 'white':'black'}}></span>
+      <span style={{backgroundColor : isNav ? 'white':'black'}}></span>
+      <span style={{backgroundColor : isNav ? 'white':'black'}}></span>
+      <span style={{backgroundColor : isNav ? 'white':'black'}}></span>
+      <span style={{backgroundColor : isNav ? 'white':'black'}}></span>
+      <span style={{backgroundColor : isNav ? 'white':'black'}}></span>
+   </div>
+  </div>
+
       <div className="contents">
       {
         mynote.map((obj)=>{
             return (
          <div className={`conts ${isActive === obj.id ? 'cont-active':'cont-inactive'}`} key={obj.id}>
-                 <div className="ccont" >
+           
+         <div className='titleedit' style={{transform: show.includes(obj.id) ? 'translateY(30rem)' : 'translateY(-20rem)',opacity: show.includes(obj.id) ? 1: 0,visibility: show.includes(obj.id) ? 'hidden':'visible'}}>
+              <TitleEdit  onSubmit={(input)=>editTitle(obj.id,input)}/>
+        </div>
+
+        <div className="close" onClick={() => handleClose(obj.id)}>
+         <img src={cross} alt="" />
+         </div> 
+          <div className="ccont" >
                    <div className="ctitle">
                     <div className='titlediv'>
                       <h3>{obj.title}</h3>
-                    </div> 
-                    <div className="editdiv">
+                 </div> 
+                  <div className="editdiv" onClick={()=>handleEdit(obj.id)}>
                        <img src={edit} alt="" className='edit-img'/>
-                    </div>
+                  </div>
                  </div>
-              </div>
-                <div className="con">
+           </div>
+           <div className="con">
+           <div className={`backblack`} style={{opacity: backBlack.includes(obj.id) ? 0.9: 0,visibility: backBlack.includes(obj.id) ? 'visible':'hidden'}}></div>
                 <Content notecontent = {obj.content} noteid={obj.id} onCh={(pullednote) => pullcontent(obj.id,pullednote)}/>
-                </div>
+          </div>
              </div>
             )
         })

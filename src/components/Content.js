@@ -12,7 +12,7 @@ const Content = ({onCh,notecontent,noteid}) => {
 
   return (
     <div className="content">
-      <textarea name="" id={noteid}  value={note} cols="162.5" rows="47" contentEditable={true} onChange={(e)=>changeHandler(e)} suppressContentEditableWarning={true}/>
+      <textarea name="" id={noteid}  value={note} className="textinput" contentEditable={true} onChange={(e)=>changeHandler(e)} suppressContentEditableWarning={true}/>
       </div>
   )
 }

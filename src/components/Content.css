@@ -15,3 +15,23 @@
     border-right: none;
 }
 
+.textinput {
+    display: block;
+    box-sizing: border-box;
+    font: Lato, Helvetica, sans-serif;
+    width: 123rem;
+    height: 100rem;
+    overflow: auto;
+    padding: 0.6em 0.8em;
+    color: #463939;
+    background: #f7f7f7;
+    border: 1px solid #e1e1e1;
+    line-height: normal;
+}
+
+@media screen and (max-width: 992px) {
+    .textinput{
+        width: 31rem;
+
+    }
+}
