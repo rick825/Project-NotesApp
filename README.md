@@ -8,7 +8,7 @@
 ->Added scrolling notes nav
 ->Added Add Notes function
 
-#Updates 08/07/2023 09:35 PM
+#Updates 09/07/2023 12:45 AM
 
 -> Added "Edit Title Section"
 -> Responsive for Mobile
